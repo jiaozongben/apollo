@@ -28,6 +28,8 @@ public class LegacyMetaServerProvider implements MetaServerProvider {
     domains.put(Env.LOCAL, getMetaServerAddress(prop, "local_meta", "local.meta"));
     domains.put(Env.DEV, getMetaServerAddress(prop, "dev_meta", "dev.meta"));
     domains.put(Env.FAT, getMetaServerAddress(prop, "fat_meta", "fat.meta"));
+    domains.put(Env.P1, getMetaServerAddress(prop, "p1_meta", "p1.meta"));
+    domains.put(Env.P2, getMetaServerAddress(prop, "p2_meta", "p2.meta"));
     domains.put(Env.UAT, getMetaServerAddress(prop, "uat_meta", "uat.meta"));
     domains.put(Env.LPT, getMetaServerAddress(prop, "lpt_meta", "lpt.meta"));
     domains.put(Env.PRO, getMetaServerAddress(prop, "pro_meta", "pro.meta"));
