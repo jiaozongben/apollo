@@ -7,6 +7,7 @@ import com.ctrip.framework.apollo.portal.spi.ctrip.CtripEmailService;
 import com.ctrip.framework.apollo.portal.spi.ctrip.CtripEmailRequestBuilder;
 import com.ctrip.framework.apollo.portal.spi.defaultimpl.DefaultEmailService;
 
+import com.ctrip.framework.apollo.portal.spi.defaultimpl.SinoEmailService;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -33,6 +34,19 @@ public class EmailConfiguration {
     }
   }
 
+  /**
+   * spring.profiles.active = sino
+   */
+  @Configuration
+  @Profile("sino")
+  public static class SinoEmailConfiguration {
+
+    @Bean
+    @ConditionalOnMissingBean(EmailService.class)
+    public EmailService sinoEmailService() {
+      return new SinoEmailService();
+    }
+  }
   /**
    * spring.profiles.active != ctrip
    */
