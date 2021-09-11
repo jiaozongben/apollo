@@ -16,50 +16,50 @@ import org.springframework.context.annotation.Profile;
 @Configuration
 public class EmailConfiguration {
 
-  /**
-   * spring.profiles.active = ctrip
-   */
-  @Configuration
-  @Profile("ctrip")
-  public static class CtripEmailConfiguration {
+    /**
+     * spring.profiles.active = ctrip
+     */
+    @Configuration
+    @Profile("ctrip")
+    public static class CtripEmailConfiguration {
 
-    @Bean
-    public EmailService ctripEmailService() {
-      return new CtripEmailService();
+        @Bean
+        public EmailService ctripEmailService() {
+            return new CtripEmailService();
+        }
+
+        @Bean
+        public CtripEmailRequestBuilder emailRequestBuilder() {
+            return new CtripEmailRequestBuilder();
+        }
     }
 
-    @Bean
-    public CtripEmailRequestBuilder emailRequestBuilder() {
-      return new CtripEmailRequestBuilder();
-    }
-  }
+    /**
+     * spring.profiles.active = sino
+     */
+    @Configuration
+    @Profile("sino")
+    public static class SinoEmailConfiguration {
 
-  /**
-   * spring.profiles.active = sino
-   */
-  @Configuration
-  @Profile("sino")
-  public static class SinoEmailConfiguration {
-
-    @Bean
-    @ConditionalOnMissingBean(EmailService.class)
-    public EmailService sinoEmailService() {
-      return new SinoEmailService();
+        @Bean
+        @ConditionalOnMissingBean(EmailService.class)
+        public EmailService sinoEmailService() {
+            return new SinoEmailService();
+        }
     }
-  }
-  /**
-   * spring.profiles.active != ctrip
-   */
-  @Configuration
-  @ConditionalOnMissingProfile({"ctrip"})
-  public static class DefaultEmailConfiguration {
-    @Bean
-    @ConditionalOnMissingBean(EmailService.class)
-    public EmailService defaultEmailService() {
-      return new DefaultEmailService();
-    }
-  }
 
+    /**
+     * spring.profiles.active != ctrip
+     */
+    @Configuration
+    @ConditionalOnMissingProfile({"ctrip", "sino"})
+    public static class DefaultEmailConfiguration {
+        @Bean
+        @ConditionalOnMissingBean(EmailService.class)
+        public EmailService defaultEmailService() {
+            return new DefaultEmailService();
+        }
+    }
 
 
 }
