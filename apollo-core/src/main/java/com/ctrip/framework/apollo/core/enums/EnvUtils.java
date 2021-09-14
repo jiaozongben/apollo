@@ -15,6 +15,8 @@ public final class EnvUtils {
                 return Env.P1;
             case "P2":
                 return Env.P2;
+            case "STG":
+                return Env.STG;
             case "FAT":
             case "FWS":
                 return Env.FAT;

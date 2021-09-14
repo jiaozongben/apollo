@@ -25,6 +25,9 @@ public class Env {
     // default environments
     public static final Env LOCAL = addEnvironment("LOCAL");
     public static final Env DEV = addEnvironment("DEV");
+    public static final Env P1 = addEnvironment("P1");
+    public static final Env P2 = addEnvironment("P2");
+    public static final Env STG = addEnvironment("STG");
     public static final Env FWS = addEnvironment("FWS");
     public static final Env FAT = addEnvironment("FAT");
     public static final Env UAT = addEnvironment("UAT");
@@ -67,6 +70,12 @@ public class Env {
         switch (envName.trim().toUpperCase()) {
             case "LPT":
                 return Env.LPT;
+            case "P1":
+                return Env.P1;
+            case "P2":
+                return Env.P2;
+            case "STG":
+                return Env.STG;
             case "FAT":
             case "FWS":
                 return Env.FAT;
