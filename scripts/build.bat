@@ -37,4 +37,9 @@ call mvn clean package -DskipTests -pl apollo-portal -am -Dapollo_profile=github
 
 echo "==== building portal finished ===="
 
+echo "==== starting to build client ===="
+
+call mvn clean install -DskipTests -pl apollo-client -am %META_SERVERS_OPTS%
+
+echo "==== building client finished ===="
 pause

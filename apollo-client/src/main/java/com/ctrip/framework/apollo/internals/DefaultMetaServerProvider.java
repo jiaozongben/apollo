@@ -21,6 +21,7 @@ public class DefaultMetaServerProvider implements MetaServerProvider {
 
   private String initMetaServerAddress() {
     // 1. Get from System Property
+    String env = Foundation.server().getEnvType();
     String metaAddress = System.getProperty(ConfigConsts.APOLLO_META_KEY);
     if (Strings.isNullOrEmpty(metaAddress)) {
       // 2. Get from OS environment variable, which could not contain dot and is normally in UPPER case
@@ -35,6 +36,10 @@ public class DefaultMetaServerProvider implements MetaServerProvider {
       metaAddress = Foundation.app().getProperty(ConfigConsts.APOLLO_META_KEY, null);
     }
 
+    if(Strings.isNullOrEmpty(env))
+    {
+      metaAddress = Foundation.server().getProperty(env+".meta", null);
+    }
     if (Strings.isNullOrEmpty(metaAddress)) {
       logger.warn("Could not find meta server address, because it is not available in neither (1) JVM system property 'apollo.meta', (2) OS env variable 'APOLLO_META' (3) property 'apollo.meta' from server.properties nor (4) property 'apollo.meta' from app.properties");
     } else {
